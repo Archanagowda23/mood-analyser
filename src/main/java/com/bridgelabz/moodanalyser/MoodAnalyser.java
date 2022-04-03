@@ -9,8 +9,11 @@ package com.bridgelabz.moodanalyser;
 public class MoodAnalyser {
     public static String message;
 
+    public MoodAnalyser() {
+    }
+
     // Constructor
-    public MoodAnalyser(String message) {
+    public MoodAnalyser(String message) throws MoodAnalysisException {
         this.message = message;
         analyseMood();
     }
@@ -25,7 +28,7 @@ public class MoodAnalyser {
         this.message = message;
     }
 
-    public static String analyseMood() {
+    public static String analyseMood() throws MoodAnalysisException {
         try {
             if (message.toLowerCase().contains("sad")) {
                 return "Sad";
@@ -33,7 +36,7 @@ public class MoodAnalyser {
                 return "Happy";
             }
         } catch (NullPointerException e) {
-            return "Exception Handled";
+            throw new MoodAnalysisException("Entered Invalid mood");
         }
     }
 }
